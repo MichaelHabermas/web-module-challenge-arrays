@@ -153,8 +153,14 @@ Use the filterByWord function below to do the following:
     DO NOT USE ADVANCED ARRAY METHODS (i.e. .filter) to solve this problem. 
 */
 
-function filterByWord(/*your code here*/) {
-	/*your code here*/
+function filterByWord(arr, string) {
+	let newArr = [];
+	for (var i = 0; i < arr.length; i++) {
+		if (arr[i].includes(string)) {
+			newArr.push(arr[i]);
+		}
+	}
+	return newArr;
 }
 
 /* 💪💪💪💪💪🧁🍦🍨 STRETCH 🍨🍦🍫💪💪💪💪💪*/
@@ -169,8 +175,8 @@ Use the getAverageWordLength function below to do the following:
     For example: getAverageWordLength(originalFlavors) should return a number between 0 and 3.     
 */
 
-function getAverageWordLength(/*code here*/) {
-	/*code here*/
+function getAverageWordLength(arr) {
+	return arr.join(' ').split(' ').length / arr.length;
 }
 
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪💪💪💪
@@ -185,8 +191,29 @@ Use the getRandomFlavors function and new arrays below to do the following:
     For example: getRandomFlavors(originalFlavors, newFlavors, seasonalFlavors, regionalFlavors) might return ["Strawberry Cheesecake", "Eggnog,"..."Chocolate"].
 */
 
-function getRandomFlavors(/*code here*/) {
-	/*code here*/
+function getRandomFlavors() {
+	return shuffle([...arguments].flat()).slice(0, 31);
+}
+
+// I'm using the Fisher-Yates (aka Knuth) Shuffle algorithm here. If that is inappropriate, I will attempt it a new way.
+function shuffle(array) {
+	var currentIndex = array.length,
+		temporaryValue,
+		randomIndex;
+
+	// While there remain elements to shuffle...
+	while (0 !== currentIndex) {
+		// Pick a remaining element...
+		randomIndex = Math.floor(Math.random() * currentIndex);
+		currentIndex -= 1;
+
+		// And swap it with the current element.
+		temporaryValue = array[currentIndex];
+		array[currentIndex] = array[randomIndex];
+		array[randomIndex] = temporaryValue;
+	}
+
+	return array;
 }
 
 // NEW DATA ARRAYS FOR STRETCH 2 ⬇️
